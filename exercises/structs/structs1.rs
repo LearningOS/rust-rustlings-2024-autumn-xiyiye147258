@@ -24,13 +24,13 @@ mod tests {
 
     #[test]
     fn classic_c_structs() {
-        // TODO: Instantiate a classic c struct!
+        // TODO: Instantiate a classic c struct!实例化一个经典的c语言结构体
         let green = ColorClassicStruct {
             red:0,
             green:255,
             blue:0,
         };
-
+        //宏检查green.red属性是否为0
         assert_eq!(green.red, 0);
         assert_eq!(green.green, 255);
         assert_eq!(green.blue, 0);
@@ -38,7 +38,7 @@ mod tests {
 
     #[test]
     fn tuple_structs() {
-        // TODO: Instantiate a tuple struct!
+        // TODO: Instantiate a tuple struct!实例化一个元组结构体
         let green =ColorTupleStruct(0,255,0);
 
         assert_eq!(green.0, 0);

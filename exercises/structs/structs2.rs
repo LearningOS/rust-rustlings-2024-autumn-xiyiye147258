@@ -39,6 +39,7 @@ mod tests {
         let your_order = Order {
             name: String::from("Hacker in Rust"),
             count:1,
+            //更新语法，复制剩余未更改的字段
             ..create_order_template()
         };
         assert_eq!(your_order.name, "Hacker in Rust");
