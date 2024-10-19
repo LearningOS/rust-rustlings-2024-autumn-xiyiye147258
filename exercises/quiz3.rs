@@ -16,18 +16,34 @@
 //
 // Execute `rustlings hint quiz3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+pub trait Grade {
+    fn to_string(&self) -> String;
+}
 
-pub struct ReportCard {
-    pub grade: f32,
+// 为f32类型的成绩实现Grade特征
+impl Grade for f32 {
+    fn to_string(&self) -> String {
+        ToString::to_string(self)
+    }
+}
+
+// 为String类型的成绩实现Grade特征
+impl Grade for String {
+    fn to_string(&self) -> String {
+        self.clone()
+    }
+}
+pub struct ReportCard<G: Grade> {
+    pub grade: G,
     pub student_name: String,
     pub student_age: u8,
 }
 
-impl ReportCard {
+impl<G: Grade> ReportCard<G> {
     pub fn print(&self) -> String {
+        // 使用泛型G的to_string方法来获取成绩的字符串表示
         format!("{} ({}) - achieved a grade of {}",
-            &self.student_name, &self.student_age, &self.grade)
+            &self.student_name, &self.student_age, self.grade.to_string())
     }
 }
 
@@ -50,9 +66,9 @@ mod tests {
 
     #[test]
     fn generate_alphabetic_report_card() {
-        // TODO: Make sure to change the grade here after you finish the exercise.
+        // 使用字母成绩"A+"
         let report_card = ReportCard {
-            grade: 2.1,
+            grade: "A+".to_string(),
             student_name: "Gary Plotter".to_string(),
             student_age: 11,
         };
